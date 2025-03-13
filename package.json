@@ -1,0 +1,25 @@
+{
+  "name": "media-hotkeys",
+  "version": "0.1.1",
+  "description": "A chrome extension that enables you to run Youtube-style hotkeys on `audio` and `video` elements on any website.",
+  "main": "index.js",
+  "dependencies": {
+    "screenfull": "^5.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "git archive --format=zip master > releases/$VER.zip"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiangts/media-hotkeys.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiangts/media-hotkeys/issues"
+  },
+  "homepage": "https://github.com/jiangts/media-hotkeys#readme"
+}
