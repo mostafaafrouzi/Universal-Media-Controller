@@ -28,6 +28,9 @@ A powerful Chrome extension that brings YouTube-style keyboard shortcuts to any 
 | 0-9 | Jump to percentage | Jump to specific percentage of media |
 | M | Toggle Mute | Toggle media sound |
 | F | Toggle Fullscreen | Toggle fullscreen mode |
+| P | Picture-in-Picture | Toggle Picture-in-Picture mode |
+| + | Increase Volume | Increase volume by 10% |
+| - | Decrease Volume | Decrease volume by 10% |
 
 ## 🚀 Installation
 

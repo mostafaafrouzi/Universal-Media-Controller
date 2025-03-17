@@ -76,6 +76,29 @@ $(() => {
     }
   }
 
+  const togglePictureInPicture = () => async e => {
+    let media = lastPlayed || medias[0]
+    if(!media || media.tagName !== 'VIDEO') return
+    try {
+      if (document.pictureInPictureElement) {
+        await document.exitPictureInPicture()
+        notify('Picture-in-Picture: Off')
+      } else if (document.pictureInPictureEnabled) {
+        await media.requestPictureInPicture()
+        notify('Picture-in-Picture: On')
+      }
+    } catch (error) {
+      notify('Picture-in-Picture not supported')
+    }
+  }
+
+  const adjustVolume = (amount) => async e => {
+    let media = lastPlayed || medias[0]
+    if(!media) return
+    media.volume = Math.min(Math.max(media.volume + amount, 0), 1)
+    notify(`Volume: ${Math.round(media.volume * 100)}%`)
+  }
+
   // Define hotkeys
   hotkeys['k'] = togglePlayPause();
   hotkeys['j'] = jump(-10);
@@ -85,6 +108,9 @@ $(() => {
   hotkeys['<'] = playbackRate(-0.25);
   hotkeys['>'] = playbackRate(0.25);
   hotkeys['f'] = toggleFullscreen();
+  hotkeys['p'] = togglePictureInPicture();
+  hotkeys['+'] = adjustVolume(0.1);
+  hotkeys['-'] = adjustVolume(-0.1);
   for(let i = 0; i < 10; i++) {
     hotkeys[i+''] = seekPercent(i * 10);
   }

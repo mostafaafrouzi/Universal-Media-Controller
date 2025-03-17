@@ -42,6 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Percentage-based seeking (0-9 keys)
 - Mute toggle (M key)
 - Fullscreen support (F key)
+- Picture-in-Picture toggle (P key)
+- Volume control (+ / - keys)
 - Visual notifications for actions
 - Settings persistence
 - Toggle on/off with extension icon click
@@ -64,7 +66,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Planned Features
 - Customizable keyboard shortcuts
 - Site-specific settings
-- Volume control with keyboard
 - Playback position memory
 - Playlist navigation support
 - Subtitle controls
