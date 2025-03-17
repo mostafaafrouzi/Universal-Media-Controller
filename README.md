@@ -31,6 +31,8 @@ A powerful Chrome extension that brings YouTube-style keyboard shortcuts to any 
 | P | Picture-in-Picture | Toggle Picture-in-Picture mode |
 | + | Increase Volume | Increase volume by 10% |
 | - | Decrease Volume | Decrease volume by 10% |
+| [ | Previous Subtitle | Jump to previous subtitle |
+| ] | Next Subtitle | Jump to next subtitle |
 
 ## 🚀 Installation
 

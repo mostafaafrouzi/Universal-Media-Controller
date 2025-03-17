@@ -25,9 +25,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Performance improvements
 - Security enhancements
 
-## [0.1.1] - Original Version
-- Based on the original work by [@jiangts](https://github.com/jiangts/media-hotkeys)
-- Initial feature set including basic media controls
+## [0.1.1] - 2024-03-17
+
+### Added
+- Picture-in-Picture toggle with 'P' key
+- Volume control with '+' and '-' keys
+- Subtitle navigation with '[' and ']' keys
+- Support for YouTube and other popular video players
+- Visual feedback for all new features
+
+### Enhanced
+- Improved subtitle detection and navigation
+- Better error handling and user feedback
+- Added support for multiple video player types
+- Enhanced YouTube compatibility
 
 ## [0.1.0] - 2024-03-17
 
@@ -44,6 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fullscreen support (F key)
 - Picture-in-Picture toggle (P key)
 - Volume control (+ / - keys)
+- Subtitle navigation ([ / ] keys)
 - Visual notifications for actions
 - Settings persistence
 - Toggle on/off with extension icon click
