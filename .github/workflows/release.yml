@@ -5,17 +5,21 @@ on:
     tags:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   build:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Get version from tag
         id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
       - name: Create extension ZIP
         run: |
@@ -31,23 +35,10 @@ jobs:
           CHANGELOG.md
 
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Universal Media Controller ${{ steps.get_version.outputs.VERSION }}
+          files: universal-media-controller-${{ steps.get_version.outputs.VERSION }}.zip
+          name: Universal Media Controller ${{ steps.get_version.outputs.VERSION }}
           body_path: CHANGELOG.md
           draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./universal-media-controller-${{ steps.get_version.outputs.VERSION }}.zip
-          asset_name: universal-media-controller-${{ steps.get_version.outputs.VERSION }}.zip
-          asset_content_type: application/zip 
+          prerelease: false 
