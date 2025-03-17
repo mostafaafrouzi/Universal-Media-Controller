@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Based on the original work by [@jiangts](https://github.com/jiangts/media-hotkeys)
 - Initial feature set including basic media controls
 
-## [0.1.0] - 2024-03-XX
+## [0.1.0] - 2024-03-17
 
 ### Added
 - Initial release
@@ -61,7 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
+### Planned Features
 - Customizable keyboard shortcuts
 - Site-specific settings
 - Volume control with keyboard
