@@ -1,7 +1,7 @@
 {
-  "name": "media-hotkeys",
-  "version": "0.1.1",
-  "description": "A chrome extension that enables you to run Youtube-style hotkeys on `audio` and `video` elements on any website.",
+  "name": "universal-media-controller",
+  "version": "1.0.0",
+  "description": "A Chrome extension that enables you to run Youtube-style hotkeys on audio and video elements on any website",
   "main": "index.js",
   "dependencies": {
     "screenfull": "^5.0.2"
@@ -9,17 +9,22 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "package": "git archive --format=zip master > releases/$VER.zip"
+    "package": "zip -r releases/universal-media-controller-$VER.zip . -x '*.git*' -x 'releases/*' -x 'node_modules/*'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jiangts/media-hotkeys.git"
+    "url": "git+https://github.com/mostafaafrouzi/Universal-Media-Controller.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "chrome-extension",
+    "media-controls",
+    "hotkeys",
+    "keyboard-shortcuts"
+  ],
+  "author": "Mostafa Afrouzi",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jiangts/media-hotkeys/issues"
+    "url": "https://github.com/mostafaafrouzi/Universal-Media-Controller/issues"
   },
-  "homepage": "https://github.com/jiangts/media-hotkeys#readme"
+  "homepage": "https://github.com/mostafaafrouzi/Universal-Media-Controller#readme"
 }

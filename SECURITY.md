@@ -76,4 +76,4 @@ We regularly:
 
 For security-related inquiries, please contact:
 - Email: [your-email@example.com]
-- GitHub Issues: [Security Issues](https://github.com/yourusername/universal-media-controller/issues) 
+- GitHub Issues: [Security Issues](https://github.com/mostafaafrouzi/Universal-Media-Controller/issues) 

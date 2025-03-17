@@ -39,9 +39,9 @@ We do not use any third-party services or analytics tools. The extension works c
 
 When the extension updates, it will only update the extension files. No data collection or transmission is involved in the update process.
 
-## Contact
+## Contact Us
 
-If you have any privacy concerns, please open an issue on our [GitHub repository](https://github.com/yourusername/universal-media-controller/issues).
+If you have any privacy concerns, please open an issue on our [GitHub repository](https://github.com/mostafaafrouzi/Universal-Media-Controller/issues).
 
 ## Changes to This Policy
 
@@ -58,6 +58,6 @@ This extension complies with:
 - California Consumer Privacy Act (CCPA)
 - Chrome Web Store Privacy Guidelines
 
-## Open Source
+## Transparency
 
-This extension is open source. You can review all the code in our [GitHub repository](https://github.com/yourusername/universal-media-controller) to verify our privacy claims. 
+This extension is open source. You can review all the code in our [GitHub repository](https://github.com/mostafaafrouzi/Universal-Media-Controller) to verify our privacy claims. 

@@ -1,87 +1,65 @@
 # Universal Media Controller
 
-A powerful Chrome extension that brings YouTube-style keyboard shortcuts to any media element on any website. Control any video or audio content with familiar keyboard shortcuts, making your media consumption experience more efficient and enjoyable.
+A Chrome extension that enables you to run Youtube-style hotkeys on audio and video elements on any website.
 
-## 🌟 Features
+## Features
 
-- 🎯 Works on any website with video or audio content
-- ⌨️ YouTube-style keyboard shortcuts
-- 🔄 Toggle on/off with a single click
-- 🎚️ Playback speed control
-- ⏩ Quick navigation
-- 🔊 Volume control
-- 📺 Fullscreen support
-- 🔔 Visual notifications for actions
-- 💾 Settings persistence
+### Hotkeys include:
 
-## ⌨️ Keyboard Shortcuts
+- `k` - Toggle play/pause
+- `j` / `l` - Skip backward/forward 10 seconds
+- `left` / `right` - Skip backward/forward 5 seconds
+- `<` / `>` - Decrease/Increase playback rate by 0.25
+- `0-9` - Skip to percentage of media, 0% to 90%
+- `m` - Toggle mute
+- `f` - Toggle fullscreen
 
-| Key | Function | Description |
-|-----|----------|-------------|
-| K | Play/Pause | Toggle media playback |
-| J | Skip Backward 10s | Jump back 10 seconds |
-| L | Skip Forward 10s | Jump forward 10 seconds |
-| ← | Skip Backward 5s | Jump back 5 seconds |
-| → | Skip Forward 5s | Jump forward 5 seconds |
-| < | Decrease Speed | Reduce playback speed by 0.25x |
-| > | Increase Speed | Increase playback speed by 0.25x |
-| 0-9 | Jump to percentage | Jump to specific percentage of media |
-| M | Toggle Mute | Toggle media sound |
-| F | Toggle Fullscreen | Toggle fullscreen mode |
+To toggle these media hotkeys on/off, click the extension icon in your browser toolbar.
 
-## 🚀 Installation
+## Installation
 
-### From Chrome Web Store (Coming Soon)
-1. Visit the Chrome Web Store
-2. Search for "Universal Media Controller"
-3. Click "Add to Chrome"
+You can install this extension from the [Chrome Web Store](https://chrome.google.com/webstore/category/extensions) (coming soon).
 
-### Manual Installation
-1. Download the latest release from the [Releases](https://github.com/yourusername/universal-media-controller/releases) page
-2. Open Chrome and go to `chrome://extensions/`
-3. Enable "Developer mode" in the top right corner
-4. Click "Load unpacked" and select the extension folder
+For development or manual installation:
+1. Clone this repository
+2. Open Chrome and navigate to `chrome://extensions/`
+3. Enable "Developer mode" in the top right
+4. Click "Load unpacked" and select the extension directory
 
-## 🛠️ Development
+## Development
+
+### Building the Extension
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/universal-media-controller.git
-
-# Navigate to the project directory
-cd universal-media-controller
-
-# Install dependencies
-npm install
-
-# Build the extension
-npm run build
+VER=1.0.0 npm run package
 ```
 
-## 🤝 Contributing
+This will create a zip file in the `releases` directory.
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and contribute to the project.
 
-## 📝 License
+## Security
+
+For security concerns, please read our [Security Policy](SECURITY.md).
+
+## Privacy
+
+For information about how we handle user data, please read our [Privacy Policy](PRIVACY.md).
+
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## �� Acknowledgments
+## Acknowledgments
 
-- Special thanks to [@jiangts](https://github.com/jiangts) for creating the original [media-hotkeys](https://github.com/jiangts/media-hotkeys) extension
-- Inspired by YouTube keyboard shortcuts
-- Built with modern web technologies
-- Special thanks to all contributors
+- Special thanks to [@jiangts](https://github.com/jiangts) for creating the original [media-hotkeys](https://github.com/jiangts/media-hotkeys) extension that inspired this project.
+- Thanks to all contributors who help improve this extension.
 
 ## 📞 Support
 
-If you encounter any issues or have suggestions, please [open an issue](https://github.com/yourusername/universal-media-controller/issues).
+If you encounter any issues or have suggestions, please [open an issue](https://github.com/mostafaafrouzi/Universal-Media-Controller/issues).
 
 ## 🔄 Changelog
 
