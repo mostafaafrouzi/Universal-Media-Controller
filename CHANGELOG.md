@@ -5,26 +5,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2024-03-17
-
-### Added
-- Migrated to Manifest V3 for better security and performance
-- New modern UI design
-- Improved error handling and notifications
-- Better state management
-- Enhanced documentation
-
-### Changed
-- Renamed project to "Universal Media Controller"
-- Updated all repository links and documentation
-- Improved build process
-- Enhanced code organization and structure
-
-### Fixed
-- Various compatibility issues with modern browsers
-- Performance improvements
-- Security enhancements
-
 ## [0.1.2] - 2024-03-17
 
 ### Changed
