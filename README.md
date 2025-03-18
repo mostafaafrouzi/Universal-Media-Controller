@@ -1,5 +1,7 @@
 # Universal Media Controller
 
+![Universal Media Controller](.github/images/main.png)
+
 A powerful Chrome extension that brings YouTube-style keyboard shortcuts to any media element on any website. Control any video or audio content with familiar keyboard shortcuts, making your media consumption experience more efficient and enjoyable.
 
 ## 🌟 Features

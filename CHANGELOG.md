@@ -25,6 +25,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Performance improvements
 - Security enhancements
 
+## [0.1.2] - 2024-03-17
+
+### Changed
+- Updated extension icon with a new modern design
+- Added promotional images for Chrome Web Store
+- Enhanced README.md with feature showcase image
+
 ## [0.1.1] - 2024-03-17
 
 ### Added
