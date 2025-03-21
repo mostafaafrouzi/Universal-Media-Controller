@@ -38,10 +38,15 @@ A powerful Chrome extension that brings YouTube-style keyboard shortcuts to any 
 
 ## 🚀 Installation
 
-### From Chrome Web Store (Coming Soon)
-1. Visit the Chrome Web Store
-2. Search for "Universal Media Controller"
-3. Click "Add to Chrome"
+### ✅ From Chrome Web Store  
+You can install the extension directly from the Chrome Web Store:
+
+[**Universal Media Controller** on Chrome Web Store](https://chromewebstore.google.com/detail/gfnimohgkhpemnhidffilknnibppmfkg?utm_source=item-share-cb)
+
+1. Click the link above  
+2. Press **"Add to Chrome"**  
+3. Done! Start using Universal Media Controller
+
 
 ### Manual Installation
 1. Download the latest release from the [Releases](https://github.com/mostafaafrouzi/Universal-Media-Controller/releases) page
