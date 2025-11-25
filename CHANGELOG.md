@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2025-01-25
+
+### Added
+- Custom keyboard shortcuts configuration via Options page
+- Shadow DOM support for better compatibility with modern websites
+- Functional blacklist feature to disable hotkeys on specific sites
+- Real-time hotkey updates when changing shortcuts in Options
+- Built-in notification system (replaced Toastr)
+- Improved media element detection with MutationObserver
+
+### Changed
+- **BREAKING**: Removed jQuery dependency - now 100% vanilla JavaScript
+- Modernized codebase with ES6+ features
+- Improved popup UI with better encoding (UTF-8) and cleaner design
+- Enhanced media detection performance using MutationObserver instead of polling
+- Updated build script to use `tar` for cross-platform compatibility
+
+### Fixed
+- Blacklist feature now works correctly
+- Popup toggle switch properly enables/disables extension
+- Build script error (`npm run build` now works on Windows)
+- Duplicate content issue in popup UI
+- Character encoding issues in popup
+
+### Removed
+- jQuery (replaced with vanilla JavaScript)
+- Toastr (replaced with custom notification system)
+- Dead code in background script (unused click handler)
+
 ## [0.1.2] - 2024-03-17
 
 ### Changed
@@ -63,14 +92,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned Features
-- Customizable keyboard shortcuts
 - Site-specific settings
 - Playback position memory
 - Playlist navigation support
-- Subtitle controls
 - Quality selection shortcuts
 - Video size controls
 - Reverse playback support
 - Language selection shortcuts
 - Cloud sync for settings
-- Theme customization 
+- Theme customization

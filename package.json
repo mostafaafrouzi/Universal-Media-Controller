@@ -1,6 +1,6 @@
 {
   "name": "universal-media-controller",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A Chrome extension that enables you to run Youtube-style hotkeys on audio and video elements on any website",
   "main": "index.js",
   "dependencies": {
