@@ -3,7 +3,7 @@ name: Create Release
 on:
   push:
     tags:
-      - 'v*' # Triggers on version tags like v0.2.0
+      - 'v*' # Triggers ONLY on version tags like v0.2.0
 
 permissions:
   contents: write
@@ -35,11 +35,43 @@ jobs:
         run: |
           MANIFEST_VERSION=$(node -p "require('./manifest.json').version")
           TAG_VERSION="${{ steps.get_version.outputs.VERSION }}"
+          if [ "$MANIFEST_VERSION" != "$TAG_VERSION" ]; then
+            echo "Error: manifest.json version ($MANIFEST_VERSION) doesn't match tag version ($TAG_VERSION)"
+            exit 1
+          fi
+          echo "✅ Version validation passed: $MANIFEST_VERSION"
+
+      - name: Create releases directory
+        run: mkdir -p releases
+
+      - name: Build extension (create zip)
+        run: |
+          cd $GITHUB_WORKSPACE
+          zip -r releases/universal-media-controller.zip \
+            manifest.json \
+            src/ \
+            css/ \
+            js/ \
+            icons/ \
+            _locales/ \
+            LICENSE \
+            README.md \
+            CHANGELOG.md
+
+      - name: Verify build output
+        run: |
           if [ ! -f "releases/universal-media-controller.zip" ]; then
             echo "Error: Build output not found"
             exit 1
           fi
           echo "✅ Build successful"
+          
+          # Verify zip structure (manifest.json should be at root)
+          if ! unzip -l releases/universal-media-controller.zip | grep -q "manifest.json"; then
+            echo "Error: manifest.json not found in zip root"
+            exit 1
+          fi
+          echo "✅ Zip structure validated"
 
       - name: Rename zip file with version
         run: |

@@ -9,7 +9,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tar -a -cf releases/universal-media-controller.zip --exclude .git --exclude releases --exclude node_modules .",
+    "build": "powershell -Command \"Compress-Archive -Path manifest.json,src,css,js,icons,_locales,LICENSE,README.md,CHANGELOG.md -DestinationPath releases/universal-media-controller.zip -Force\"",
     "version:bump": "node scripts/bump-version.js"
   },
   "repository": {
