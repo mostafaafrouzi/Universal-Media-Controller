@@ -9,7 +9,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tar -a -cf releases/universal-media-controller.zip --exclude .git --exclude releases --exclude node_modules ."
+    "build": "tar -a -cf releases/universal-media-controller.zip --exclude .git --exclude releases --exclude node_modules .",
+    "version:bump": "node scripts/bump-version.js"
   },
   "repository": {
     "type": "git",

@@ -3,42 +3,94 @@ name: Create Release
 on:
   push:
     tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'v*' # Triggers on version tags like v0.2.0
 
 permissions:
   contents: write
-  packages: write
 
 jobs:
-  build:
-    name: Create Release
+  build-and-release:
+    name: Build and Release
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
       - name: Get version from tag
         id: get_version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-
-      - name: Create extension ZIP
         run: |
-          zip -r "universal-media-controller-${{ steps.get_version.outputs.VERSION }}.zip" \
-          manifest.json \
-          src/ \
-          css/ \
-          js/ \
-          icons/ \
-          _locales/ \
-          LICENSE \
-          README.md \
-          CHANGELOG.md
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
-      - name: Create Release
+      - name: Validate version match
+        run: |
+          MANIFEST_VERSION=$(node -p "require('./manifest.json').version")
+          TAG_VERSION="${{ steps.get_version.outputs.VERSION }}"
+          if [ "$MANIFEST_VERSION" != "$TAG_VERSION" ]; then
+            echo "Error: manifest.json version ($MANIFEST_VERSION) doesn't match tag version ($TAG_VERSION)"
+            exit 1
+          fi
+          echo "✅ Version validation passed: $MANIFEST_VERSION"
+
+      - name: Install dependencies
+        run: npm ci --only=production
+
+      - name: Build extension
+        run: npm run build
+
+      - name: Verify build output
+        run: |
+          if [ ! -f "releases/universal-media-controller.zip" ]; then
+            echo "Error: Build output not found"
+            exit 1
+          fi
+          echo "✅ Build successful"
+
+      - name: Rename zip file with version
+        run: |
+          mv releases/universal-media-controller.zip \
+             releases/universal-media-controller-${{ steps.get_version.outputs.TAG }}.zip
+
+      - name: Extract changelog for this version
+        id: changelog
+        run: |
+          VERSION="${{ steps.get_version.outputs.VERSION }}"
+          
+          # Extract changelog between this version and the next version header
+          CHANGELOG=$(awk "/## \[$VERSION\]/,/## \[/" CHANGELOG.md | sed '$d' | tail -n +2)
+          
+          # If changelog is empty, use a default message
+          if [ -z "$CHANGELOG" ]; then
+            CHANGELOG="Release version $VERSION"
+          fi
+          
+          # Save to file for the release
+          echo "$CHANGELOG" > release_notes.md
+          
+          echo "✅ Changelog extracted"
+
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: universal-media-controller-${{ steps.get_version.outputs.VERSION }}.zip
-          name: Universal Media Controller ${{ steps.get_version.outputs.VERSION }}
-          body_path: CHANGELOG.md
+          files: releases/universal-media-controller-${{ steps.get_version.outputs.TAG }}.zip
+          name: Universal Media Controller ${{ steps.get_version.outputs.TAG }}
+          body_path: release_notes.md
           draft: false
-          prerelease: false 
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-${{ steps.get_version.outputs.TAG }}
+          path: releases/universal-media-controller-${{ steps.get_version.outputs.TAG }}.zip
+          retention-days: 90
