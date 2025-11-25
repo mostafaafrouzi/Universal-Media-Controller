@@ -9,7 +9,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "package": "zip -r releases/universal-media-controller-$VER.zip . -x '*.git*' -x 'releases/*' -x 'node_modules/*'"
+    "build": "tar -a -cf releases/universal-media-controller.zip --exclude .git --exclude releases --exclude node_modules ."
   },
   "repository": {
     "type": "git",

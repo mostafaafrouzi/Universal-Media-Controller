@@ -1,44 +1,130 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Media Hotkeys Options</title>
+    <meta charset="UTF-8">
+    <title>Media Hotkeys</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
-    <link rel="stylesheet" href="../../css/toastr.min.css" />
+    <style>
+        body {
+            width: 300px;
+            padding: 15px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        .header h1 {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+        .switch-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(16px);
+        }
+
+        .footer-links {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            text-align: center;
+        }
+
+        .settings-btn {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="mx-3 my-3">
-        <!-- top nav -->
-        <nav class="level">
-            <div class="level-item has-text-centered">
-                <img src="../../icons/100.png" alt="" style="height: 30px;"></img>
-                <h1 class="title ml-3"> Media Hotkeys </h1>
-            </div>
-        </nav>
-
-        <div class="columns">
-            <!-- <div class="column">
-                <div class="field">
-                    <label class="label">Whitelisted Sites</label>
-                    <div class="control">
-                        <textarea class="textarea"></textarea>
-                    </div>
-                </div>
-            </div> -->
-            <div class="column">
-                <div class="field">
-                    <label class="label">Blacklisted Sites</label>
-                    <div class="control">
-                        <textarea class="textarea"></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+    <div class="header">
+        <img src="../../icons/48.png" alt="Logo">
+        <h1>Media Controller</h1>
     </div>
-    <script src="../../js/jquery-2.2.4.min.js"></script>
-    <script src="../../js/toastr.min.js"></script>
+
+    <div class="controls">
+        <div class="switch-container">
+            <span class="has-text-weight-medium">Enable Extension</span>
+            <label class="switch">
+                <input type="checkbox" id="toggle-ext">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label is-small">Blacklisted Sites (One per line)</label>
+        <div class="control">
+            <textarea class="textarea is-small" id="blacklist" rows="3" placeholder="example.com"></textarea>
+        </div>
+    </div>
+
+    <div class="footer-links">
+        <button id="open-options" class="button is-info is-outlined is-small settings-btn">
+            <span>⚙️ Customize Shortcuts</span>
+        </button>
+    </div>
+
     <script src="index.js"></script>
 </body>
 

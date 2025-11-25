@@ -12,14 +12,3 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true; // Will respond asynchronously
   }
 });
-
-// Handle extension icon click
-chrome.action.onClicked.addListener((tab) => {
-  chrome.storage.local.get(['activate'], (result) => {
-    const newState = !(result.activate ?? true);
-    chrome.storage.local.set({ activate: newState });
-    
-    // Notify content script about state change
-    chrome.tabs.sendMessage(tab.id, { activate: newState });
-  });
-}); 
