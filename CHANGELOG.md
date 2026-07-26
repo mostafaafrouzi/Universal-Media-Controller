@@ -14,15 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Site profiles** — optional built-in presets for Twitch, Netflix, and YouTube (all off by default; enable in Options)
 - Custom per-domain profiles in Options (pick which actions to disable)
 - Revoke previously granted site access from the popup
+- Disable individual shortcuts from the Options page (per user Store feedback)
+- Toggle for number-key percentage seeking (`0–9`)
+- Cross-platform `npm run build` via `scripts/build.js`
 
 ### Changed
 - Removed required `host_permissions` / static `content_scripts` (fixes scary install-time “read all data” warning)
 - Version jump to 0.3.0 because the permission model is a breaking change for existing installs (re-allow sites once)
-
-### Fixed
-- Clearer privacy messaging aligned with optional permissions
-
-## [0.2.1] - 2026-07-26
+- Improved media target selection (prefer playing element)
+- Ignore shortcuts while typing in inputs / contenteditable fields
+- README, PRIVACY, and SECURITY aligned with actual behavior
 
 ### Fixed
 - Playback speed no longer gets stuck off the 0.25× grid (e.g. `0.10x` → `1.10x` instead of `1.00x`)
@@ -31,18 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Blacklist updates apply via storage sync without requiring a full extension reload
 - Seeking skipped on live streams without a finite duration
 - Removed remote Bulma CDN from the popup (privacy / offline consistency)
-
-### Added
-- Disable individual shortcuts from the Options page (per user Store feedback)
-- Toggle for number-key percentage seeking (`0–9`)
-- `all_frames` content script support for media inside iframes
-- Cross-platform `npm run build` via `scripts/build.js`
-- Clearer in-popup privacy note about host permissions
-
-### Changed
-- Improved media target selection (prefer playing element)
-- Ignore shortcuts while typing in inputs / contenteditable fields
-- README, PRIVACY, and SECURITY aligned with actual behavior (v0.2.x)
+- Clearer privacy messaging aligned with optional permissions
+- Release workflow changelog extraction (header line no longer matches as end pattern)
 
 ## [0.2.0] - 2025-01-25
 
@@ -59,11 +50,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Modernized codebase with ES6+ features
 - Improved popup UI with better encoding (UTF-8) and cleaner design
 - Enhanced media detection performance using MutationObserver instead of polling
+- Updated build script to use `tar` for cross-platform compatibility
 
 ### Fixed
 - Blacklist feature now works correctly
 - Popup toggle switch properly enables/disables extension
-- Build script error (`npm run build` now works)
+- Build script error (`npm run build` now works on Windows)
 - Duplicate content issue in popup UI
 - Character encoding issues in popup
 
