@@ -75,21 +75,7 @@ jobs:
         id: changelog
         run: |
           VERSION="${{ steps.get_version.outputs.VERSION }}"
-
-          # Extract from "## [VERSION]" until the next "## [" header (exclusive).
-          # Important: skip the end-pattern check on the starting line, otherwise
-          # awk range /start/,/## [/ collapses to a single empty section.
-          awk -v ver="$VERSION" '
-            $0 ~ ("^## \\[" ver "\\]") { printing = 1; print; next }
-            printing && /^## \[/ { exit }
-            printing { print }
-          ' CHANGELOG.md > release_notes.md
-
-          if [ ! -s release_notes.md ]; then
-            echo "Error: No changelog section found for version $VERSION in CHANGELOG.md"
-            exit 1
-          fi
-
+          node scripts/extract-changelog.js "$VERSION"
           echo "✅ Changelog extracted:"
           cat release_notes.md
 
