@@ -45,18 +45,7 @@ jobs:
         run: mkdir -p releases
 
       - name: Build extension (create zip)
-        run: |
-          cd $GITHUB_WORKSPACE
-          zip -r releases/universal-media-controller.zip \
-            manifest.json \
-            src/ \
-            css/ \
-            js/ \
-            icons/ \
-            _locales/ \
-            LICENSE \
-            README.md \
-            CHANGELOG.md
+        run: npm run build
 
       - name: Verify build output
         run: |

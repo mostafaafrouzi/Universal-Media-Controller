@@ -1,8 +1,8 @@
 {
   "name": "Universal Media Controller",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "manifest_version": 3,
-  "description": "Universal Media Controller - Smart Keyboard Shortcuts for Any Media",
+  "description": "YouTube-style keyboard shortcuts for any video or audio. You choose which sites to allow — nothing is collected.",
   "homepage_url": "https://github.com/mostafaafrouzi/Universal-Media-Controller",
   "icons": {
     "16": "icons/16.png",
@@ -11,33 +11,21 @@
   },
   "permissions": [
     "storage",
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
-  "host_permissions": [
-    "<all_urls>"
+  "optional_host_permissions": [
+    "*://*/*",
+    "http://*/*",
+    "https://*/*"
   ],
   "default_locale": "en",
   "action": {
-    "default_popup": "./src/popup/index.html"
+    "default_popup": "./src/popup/index.html",
+    "default_title": "Universal Media Controller"
   },
   "background": {
-    "service_worker": "./src/background.js",
-    "type": "module"
+    "service_worker": "./src/background.js"
   },
-  "options_page": "src/options/index.html",
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "css": [
-        "css/index.css"
-      ],
-      "js": [
-        "js/mousetrap.min.js",
-        "js/screenfull.min.js",
-        "src/inject/index.js"
-      ]
-    }
-  ]
+  "options_page": "src/options/index.html"
 }

@@ -42,7 +42,9 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 ## Use a Consistent Coding Style
 
 * Use 2 spaces for indentation rather than tabs
-* You can try running `npm run lint` for style unification
+* Prefer plain ES modules / vanilla JS consistent with existing `src/` files
+* Run `npm test` for a basic file presence check and `npm run build` before opening a PR
+* Manually verify hotkeys on at least one normal page and one iframe-heavy player if you touch `src/inject/`
 
 ## License
 By contributing, you agree that your contributions will be licensed under its MIT License. 

@@ -1,42 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Media Hotkeys</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
+    <title>Universal Media Controller</title>
     <style>
+        :root {
+            --accent: #1a73e8;
+            --accent-soft: #e8f0fe;
+            --text: #202124;
+            --muted: #5f6368;
+            --border: #dadce0;
+            --bg: #ffffff;
+            --ok: #0d652d;
+            --ok-bg: #e6f4ea;
+            --warn: #b06000;
+            --warn-bg: #fef7e0;
+        }
+
+        * { box-sizing: border-box; }
+
         body {
-            width: 300px;
-            padding: 15px;
+            width: 340px;
+            margin: 0;
+            padding: 16px;
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            background: var(--bg);
         }
 
         .header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 14px;
         }
 
-        .header img {
-            height: 32px;
-            margin-right: 10px;
-        }
+        .header img { width: 32px; height: 32px; }
+        .header h1 { font-size: 16px; font-weight: 650; margin: 0; }
 
-        .header h1 {
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .controls {
-            margin-bottom: 20px;
-        }
-
-        .switch-container {
+        .switch-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 14px;
         }
 
         .switch {
@@ -44,85 +53,181 @@
             display: inline-block;
             width: 40px;
             height: 24px;
+            flex-shrink: 0;
         }
 
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+        .switch input { opacity: 0; width: 0; height: 0; }
 
         .slider {
             position: absolute;
+            inset: 0;
             cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
+            background: #ccc;
+            transition: 0.2s;
             border-radius: 24px;
         }
 
         .slider:before {
-            position: absolute;
             content: "";
+            position: absolute;
             height: 16px;
             width: 16px;
             left: 4px;
             bottom: 4px;
-            background-color: white;
-            transition: .4s;
+            background: white;
+            transition: 0.2s;
             border-radius: 50%;
         }
 
-        input:checked+.slider {
-            background-color: #2196F3;
+        input:checked + .slider { background: var(--accent); }
+        input:checked + .slider:before { transform: translateX(16px); }
+
+        .perm-box {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            background: #fafafa;
         }
 
-        input:checked+.slider:before {
-            transform: translateX(16px);
+        .perm-box.warn { background: var(--warn-bg); border-color: #f9e3a5; }
+        .perm-box.ok { background: var(--ok-bg); border-color: #ceead6; }
+
+        .perm-status {
+            font-size: 12px;
+            font-weight: 600;
+            margin: 0 0 8px;
         }
 
-        .footer-links {
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-            text-align: center;
+        .perm-box.warn .perm-status { color: var(--warn); }
+        .perm-box.ok .perm-status { color: var(--ok); }
+
+        .perm-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
-        .settings-btn {
+        label.field {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        textarea {
             width: 100%;
+            min-height: 64px;
+            resize: vertical;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        textarea:focus {
+            outline: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+            border-color: var(--accent);
+        }
+
+        .hint {
+            font-size: 11px;
+            color: var(--muted);
+            margin: 6px 0 12px;
+            line-height: 1.4;
+        }
+
+        .footer {
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        button {
+            width: 100%;
+            border: 1px solid var(--accent);
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 13px;
+            padding: 9px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover { background: #d2e3fc; }
+        button:disabled { opacity: 0.5; cursor: default; }
+
+        button.primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        button.primary:hover { background: #1557b0; }
+
+        button.danger {
+            border-color: #dadce0;
+            background: #fff;
+            color: var(--muted);
+            font-weight: 500;
+            font-size: 12px;
+            padding: 7px 10px;
+        }
+
+        .privacy {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .site-line {
+            font-size: 11px;
+            color: var(--muted);
+            margin: 0 0 6px;
+            word-break: break-all;
         }
     </style>
 </head>
 
 <body>
     <div class="header">
-        <img src="../../icons/48.png" alt="Logo">
+        <img src="../../icons/48.png" alt="">
         <h1>Media Controller</h1>
     </div>
 
-    <div class="controls">
-        <div class="switch-container">
-            <span class="has-text-weight-medium">Enable Extension</span>
-            <label class="switch">
-                <input type="checkbox" id="toggle-ext">
-                <span class="slider"></span>
-            </label>
+    <div class="switch-row">
+        <span>Enable Extension</span>
+        <label class="switch" title="Toggle hotkeys on allowed tabs">
+            <input type="checkbox" id="toggle-ext">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div id="perm-box" class="perm-box warn">
+        <p id="perm-status" class="perm-status">Checking site access…</p>
+        <p id="site-line" class="site-line" hidden></p>
+        <div class="perm-actions">
+            <button type="button" class="primary" id="allow-site">Allow this site</button>
+            <button type="button" id="allow-all">Allow all sites</button>
+            <button type="button" class="danger" id="revoke-all" hidden>Revoke site access</button>
         </div>
     </div>
 
-    <div class="field">
-        <label class="label is-small">Blacklisted Sites (One per line)</label>
-        <div class="control">
-            <textarea class="textarea is-small" id="blacklist" rows="3" placeholder="example.com"></textarea>
-        </div>
-    </div>
+    <label class="field" for="blacklist">Blacklisted sites (one per line)</label>
+    <textarea id="blacklist" placeholder="example.com"></textarea>
+    <p class="hint">Domain or regex. Use site profiles in Options for smarter per-site shortcut rules (Twitch, Netflix, …).</p>
 
-    <div class="footer-links">
-        <button id="open-options" class="button is-info is-outlined is-small settings-btn">
-            <span>⚙️ Customize Shortcuts</span>
-        </button>
+    <div class="footer">
+        <button type="button" id="open-options">Shortcuts &amp; site profiles</button>
+        <p class="privacy">
+            Access is optional and only used to control media on sites you allow.
+            No browsing data is collected or sent anywhere.
+        </p>
     </div>
 
     <script src="index.js"></script>

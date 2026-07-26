@@ -2,99 +2,91 @@
 
 ![Universal Media Controller](.github/images/main.png)
 
-A powerful Chrome extension that brings YouTube-style keyboard shortcuts to any media element on any website. Control any video or audio content with familiar keyboard shortcuts, making your media consumption experience more efficient and enjoyable.
+YouTube-style keyboard shortcuts for any `<video>` or `<audio>` element on the web. You choose which sites to allow — the extension does not request broad website access at install time.
 
-## 🌟 Features
+## Features
 
-- 🎯 Works on any website with video or audio content
-- ⌨️ YouTube-style keyboard shortcuts
-- 🔄 Toggle on/off with a single click
-- 🎚️ Playback speed control
-- ⏩ Quick navigation
-- 🔊 Volume control
-- 📺 Fullscreen support
-- 🔔 Visual notifications for actions
-- 💾 Settings persistence
+- Works on sites with HTML5 video/audio (including many iframe players)
+- Familiar YouTube-style shortcuts
+- **Optional site access** — allow the current site, or all sites, from the popup
+- Custom shortcuts — remap or disable any action
+- **Site profiles** — auto-disable conflicting keys on Twitch, Netflix, and custom domains
+- Site blacklist (domain or regex)
+- Playback speed, seek, volume, mute, fullscreen, PiP
+- Subtitle cue jump (where `textTracks` are available)
+- Toggle on/off from the popup (applies to allowed tabs)
+- Settings stored locally — no accounts, no analytics
 
-## ⌨️ Keyboard Shortcuts
+## Keyboard Shortcuts (defaults)
 
-| Key | Function | Description |
-|-----|----------|-------------|
-| K | Play/Pause | Toggle media playback |
-| J | Skip Backward 10s | Jump back 10 seconds |
-| L | Skip Forward 10s | Jump forward 10 seconds |
-| ← | Skip Backward 5s | Jump back 5 seconds |
-| → | Skip Forward 5s | Jump forward 5 seconds |
-| < | Decrease Speed | Reduce playback speed by 0.25x |
-| > | Increase Speed | Increase playback speed by 0.25x |
-| 0-9 | Jump to percentage | Jump to specific percentage of media |
-| M | Toggle Mute | Toggle media sound |
-| F | Toggle Fullscreen | Toggle fullscreen mode |
-| P | Picture-in-Picture | Toggle Picture-in-Picture mode |
-| + | Increase Volume | Increase volume by 10% |
-| - | Decrease Volume | Decrease volume by 10% |
-| [ | Previous Subtitle | Jump to previous subtitle |
-| ] | Next Subtitle | Jump to next subtitle |
+| Key | Function |
+|-----|----------|
+| K | Play / Pause |
+| J / L | Seek −10s / +10s |
+| ← / → | Seek −5s / +5s |
+| `<` / `>` | Speed −0.25× / +0.25× |
+| 0–9 | Jump to 0%–90% |
+| M | Mute |
+| F | Fullscreen |
+| P | Picture-in-Picture |
+| + / − | Volume ±10% |
+| [ / ] | Previous / next subtitle |
 
-## 🚀 Installation
+Remap, disable, or override per site under **Shortcuts & site profiles**.
 
-### ✅ From Chrome Web Store  
-You can install the extension directly from the Chrome Web Store:
+## Installation
 
-[**Universal Media Controller** on Chrome Web Store](https://chromewebstore.google.com/detail/gfnimohgkhpemnhidffilknnibppmfkg?utm_source=item-share-cb)
+### Chrome Web Store
 
-1. Click the link above  
-2. Press **"Add to Chrome"**  
-3. Done! Start using Universal Media Controller
+[**Universal Media Controller** on the Chrome Web Store](https://chromewebstore.google.com/detail/gfnimohgkhpemnhidffilknnibppmfkg)
 
+After install, open the popup on a video page and click **Allow this site** (or **Allow all sites**).
 
-### Manual Installation
-1. Download the latest release from the [Releases](https://github.com/mostafaafrouzi/Universal-Media-Controller/releases) page
-2. Open Chrome and go to `chrome://extensions/`
-3. Enable "Developer mode" in the top right corner
-4. Click "Load unpacked" and select the extension folder
+### Manual / development install
 
-## 🛠️ Development
+1. Download the latest release from [Releases](https://github.com/mostafaafrouzi/Universal-Media-Controller/releases), or clone this repo
+2. Open `chrome://extensions/` and enable **Developer mode**
+3. Click **Load unpacked** and select the extension folder
+4. Open the popup → **Allow this site** or **Allow all sites**
+
+## Development
 
 ```bash
-# Clone the repository
 git clone https://github.com/mostafaafrouzi/Universal-Media-Controller.git
-
-# Navigate to the project directory
 cd Universal-Media-Controller
-
-# Install dependencies
-npm install
-
-# Build the extension
-npm run build
+npm test        # sanity checks
+npm run build   # creates releases/universal-media-controller.zip
 ```
 
-## 🤝 Contributing
+## Permissions & privacy
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+| Permission | When |
+|------------|------|
+| `storage` | Always — save preferences |
+| `activeTab` / `scripting` | Always — inject hotkeys when you use the popup or after you grant a site |
+| Host access | **Optional** — only after you click Allow in the popup |
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Chrome may still warn when you choose **Allow all sites**; that prompt is user-initiated, not forced at install. See [PRIVACY.md](PRIVACY.md).
 
-## 📝 License
+## Tips
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- Twitch / Netflix / YouTube: optional site profiles in Options can disable clashing keys — off by default.
+- If keys clash elsewhere, disable those actions globally or add a custom site profile.
+- After granting a new site, reload the tab if shortcuts do not appear yet.
+- Some DRM / fully custom players do not expose a standard media element.
 
-## 🙏 Acknowledgments
+## Contributing
 
-- Special thanks to [@jiangts](https://github.com/jiangts) for creating the original [media-hotkeys](https://github.com/jiangts/media-hotkeys) extension that inspired this project
-- Built with modern web technologies
-- Special thanks to all contributors
+See [CONTRIBUTING.md](CONTRIBUTING.md). Bug reports welcome via [Issues](https://github.com/mostafaafrouzi/Universal-Media-Controller/issues).
 
-## 📞 Support
+## License
 
-If you encounter any issues or have suggestions, please [open an issue](https://github.com/mostafaafrouzi/Universal-Media-Controller/issues).
+MIT — see [LICENSE](LICENSE).
 
-## 🔄 Changelog
+## Acknowledgments
 
-See [CHANGELOG.md](CHANGELOG.md) for a list of changes and version history.
+Inspired by [@jiangts/media-hotkeys](https://github.com/jiangts/media-hotkeys).
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).

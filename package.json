@@ -1,16 +1,11 @@
 {
   "name": "universal-media-controller",
-  "version": "0.2.0",
-  "description": "A Chrome extension that enables you to run Youtube-style hotkeys on audio and video elements on any website",
-  "main": "index.js",
-  "dependencies": {
-    "screenfull": "^5.0.2"
-  },
-  "devDependencies": {},
+  "version": "0.3.0",
+  "description": "A Chrome extension that enables YouTube-style hotkeys on audio and video elements on any website",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "powershell -Command \"Compress-Archive -Path manifest.json,src,css,js,icons,_locales,LICENSE,README.md,CHANGELOG.md -DestinationPath releases/universal-media-controller.zip -Force\"",
-    "version:bump": "node scripts/bump-version.js"
+    "build": "node scripts/build.js",
+    "version:bump": "node scripts/bump-version.js",
+    "test": "node scripts/self-check.js"
   },
   "repository": {
     "type": "git",

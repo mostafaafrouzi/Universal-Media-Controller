@@ -1,101 +1,297 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Universal Media Controller Options</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Universal Media Controller — Options</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
+        :root {
+            --bg: #f6f7f9;
+            --card: #ffffff;
+            --text: #1a1a1a;
+            --muted: #5c6570;
+            --border: #e4e7eb;
+            --accent: #1a73e8;
+            --accent-hover: #1557b0;
         }
 
-        h1 {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 32px 20px 48px;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
         }
+
+        .wrap { max-width: 760px; margin: 0 auto; }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 1.6rem;
+            font-weight: 650;
+        }
+
+        h2 {
+            margin: 32px 0 8px;
+            font-size: 1.15rem;
+            font-weight: 650;
+        }
+
+        .lead, .section-lead {
+            color: var(--muted);
+            margin: 0 0 16px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card + .card { margin-top: 12px; }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
         }
 
-        th,
-        td {
+        th, td {
             text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #eee;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
         }
 
-        input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: 100px;
+        th {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--muted);
+            background: #fafbfc;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr.disabled-row td { opacity: 0.55; }
+
+        input[type="text"] {
+            padding: 8px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            width: 120px;
+            font-family: ui-monospace, Consolas, monospace;
+            background: #fff;
+        }
+
+        input[type="text"]:focus {
+            outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+            border-color: var(--accent);
+        }
+
+        input[type="text"]:disabled {
+            background: #f0f1f3;
+            color: var(--muted);
+        }
+
+        .preset {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .preset:last-child { border-bottom: none; }
+
+        .preset .meta { flex: 1; }
+        .preset .title { font-weight: 600; margin: 0 0 2px; }
+        .preset .desc { margin: 0; font-size: 0.88rem; color: var(--muted); }
+        .preset .keys { margin: 6px 0 0; font-size: 0.8rem; color: var(--muted); font-family: ui-monospace, Consolas, monospace; }
+
+        .custom-form {
+            padding: 16px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .custom-form label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .custom-form input[type="text"].wide { width: 100%; max-width: 320px; }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 12px;
+        }
+
+        .chips label {
+            font-weight: 500;
+            color: var(--text);
+            display: inline-flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .custom-list { padding: 0 16px 16px; }
+        .custom-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-top: 1px solid var(--border);
+            font-size: 0.92rem;
+        }
+
+        .hint {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin: 16px 0 0;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         button {
-            background: #007bff;
-            color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
+            padding: 10px 18px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
         }
 
-        button:hover {
-            background: #0056b3;
-        }
-
-        .reset {
-            background: #6c757d;
-            margin-left: 10px;
-        }
-
-        .reset:hover {
-            background: #545b62;
+        #save { background: var(--accent); color: #fff; }
+        #save:hover { background: var(--accent-hover); }
+        #reset { background: #e8eaed; color: #3c4043; }
+        #reset:hover { background: #dadce0; }
+        #add-custom { background: #e8f0fe; color: var(--accent); }
+        .remove-btn {
+            background: transparent;
+            color: #c5221f;
+            font-size: 0.85rem;
+            padding: 6px 10px;
         }
 
         .toast {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #333;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
+            bottom: 24px;
+            right: 24px;
+            background: #202124;
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 8px;
             opacity: 0;
-            transition: opacity 0.3s;
+            pointer-events: none;
+            transition: opacity 0.25s;
+            z-index: 10;
         }
+
+        .enable-col { width: 88px; }
+        .key-col { width: 160px; }
+
+        label.enable {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 0.9rem;
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .nav a { color: var(--accent); text-decoration: none; }
+        .nav a:hover { text-decoration: underline; }
     </style>
 </head>
 
 <body>
-    <h1>Keyboard Shortcuts</h1>
-    <p>Click on a box and press the desired key combination.</p>
+    <div class="wrap">
+        <h1>Settings</h1>
+        <p class="lead">
+            Remap or disable global shortcuts, and optionally enable site profiles that turn off conflicting keys
+            on specific domains (for example Twitch). Profiles are off until you enable them.
+        </p>
 
-    <table id="shortcuts">
-        <thead>
-            <tr>
-                <th>Action</th>
-                <th>Shortcut</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Populated by JS -->
-        </tbody>
-    </table>
+        <div class="nav">
+            <a href="#shortcuts">Shortcuts</a>
+            <a href="#profiles">Site profiles</a>
+        </div>
 
-    <button id="save">Save</button>
-    <button id="reset" class="reset">Reset to Defaults</button>
+        <h2 id="shortcuts">Keyboard shortcuts</h2>
+        <p class="section-lead">
+            Click a key field and press a key. Uncheck <strong>On</strong> to disable.
+            Press <kbd>Backspace</kbd> / <kbd>Delete</kbd> to clear. Site profiles can still override these per domain.
+        </p>
 
-    <div id="toast" class="toast">Saved!</div>
+        <div class="card">
+            <table id="shortcuts">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th class="key-col">Shortcut</th>
+                        <th class="enable-col">On</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
 
+        <h2 id="profiles">Site profiles</h2>
+        <p class="section-lead">
+            Built-in presets disable keys that clash with native players. Custom profiles let you pick a domain and actions to disable.
+        </p>
+
+        <div class="card" id="presets"></div>
+
+        <div class="card" style="margin-top:12px">
+            <div class="custom-form">
+                <div>
+                    <label for="custom-host">Add custom profile (domain)</label><br>
+                    <input id="custom-host" class="wide" type="text" placeholder="example.com" spellcheck="false">
+                </div>
+                <div>
+                    <label>Disable actions on that domain</label>
+                    <div class="chips" id="custom-actions"></div>
+                </div>
+                <div>
+                    <button type="button" id="add-custom">Add / update profile</button>
+                </div>
+            </div>
+            <div class="custom-list" id="custom-list"></div>
+        </div>
+
+        <p class="hint">
+            Number keys <strong>0–9</strong> jump to 0%–90% when enabled globally and not disabled by a site profile.
+            After changing site access in the popup, reload open tabs if hotkeys do not appear yet.
+        </p>
+
+        <div class="actions">
+            <button type="button" id="save">Save all</button>
+            <button type="button" id="reset">Reset shortcuts to defaults</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" role="status">Saved!</div>
+    <script src="../shared/presets.js"></script>
     <script src="index.js"></script>
 </body>
 

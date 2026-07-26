@@ -1,63 +1,55 @@
 # Privacy Policy
 
-Last updated: March 2024
+Last updated: July 26, 2026
 
 ## Overview
 
-Universal Media Controller is committed to protecting your privacy. This extension is designed with privacy in mind and does not collect, store, or transmit any personal information.
+Universal Media Controller runs entirely in your browser. It does not collect, sell, or transmit personal information.
 
-## Data Collection
+## Data collection
 
-We collect **NO** data. This extension:
+We collect **no** analytics, accounts, or browsing profiles. The extension:
+
 - Does not track your browsing history
-- Does not collect any personal information
-- Does not store any user data
-- Does not transmit any information to external servers
-- Does not use any analytics tools
+- Does not collect personal information
+- Does not send page content or media metadata to any server
+- Does not use advertising or analytics SDKs
 
-## Local Storage
+## Local storage
 
-The only data stored locally on your device is:
-- Your extension settings (like hotkey preferences)
-- Your last used playback speed
-- Your last used volume level
+Data stays in Chrome’s extension storage on your device:
 
-All this data is stored locally in your browser and is never transmitted to any server.
+| Key | Purpose |
+|-----|---------|
+| `activate` | Whether hotkeys are enabled |
+| `blacklist` | Sites where hotkeys should not run |
+| `customHotkeys` | Remapped or disabled shortcuts |
+| `siteProfiles` | Built-in / custom per-site shortcut rules |
+| `needsPermissionSetup` / `siteProfilesInitialized` | Local UI/setup flags |
+
+Playback speed and volume are **not** persisted by the extension.
 
 ## Permissions
 
-The extension requires minimal permissions:
-- `storage`: Only used for saving your local preferences
-- `activeTab`: Only used for interacting with media elements on the current tab
-- `host_permissions`: Required to work with media elements on different websites
+| Permission | Why |
+|------------|-----|
+| `storage` | Save the preferences above |
+| `activeTab` | Temporarily access the tab you open the popup on |
+| `scripting` | Inject hotkey scripts into pages you allow |
+| Optional host access (`*://*/*`, etc.) | Only after you click **Allow this site** or **Allow all sites** |
 
-## Third-Party Services
+The extension does **not** require broad website access at install time. If you grant “all sites,” Chrome will show its standard warning — that is initiated by your choice in the popup, not by a silent install grant.
 
-We do not use any third-party services or analytics tools. The extension works completely offline once installed.
+Host access is used only to detect media elements and handle keyboard shortcuts. Page content is not scraped or uploaded.
 
-## Updates
+## Third-party services
 
-When the extension updates, it will only update the extension files. No data collection or transmission is involved in the update process.
+Popup and options UI use local CSS only. Vendored libraries (`mousetrap`, `screenfull`) ship inside the package. Core features do not call external network APIs.
 
-## Contact Us
+## Contact
 
-If you have any privacy concerns, please open an issue on our [GitHub repository](https://github.com/mostafaafrouzi/Universal-Media-Controller/issues).
+Privacy questions: [GitHub Issues](https://github.com/mostafaafrouzi/Universal-Media-Controller/issues) or **mostafa.afrouzi@gmail.com**.
 
-## Changes to This Policy
+## Changes
 
-We will update this privacy policy if we make any changes to our data handling practices. The latest version will always be available in our repository.
-
-## Your Rights
-
-Since we don't collect any data, there's no personal information to access, modify, or delete. You have complete control over your local settings.
-
-## Compliance
-
-This extension complies with:
-- General Data Protection Regulation (GDPR)
-- California Consumer Privacy Act (CCPA)
-- Chrome Web Store Privacy Guidelines
-
-## Transparency
-
-This extension is open source. You can review all the code in our [GitHub repository](https://github.com/mostafaafrouzi/Universal-Media-Controller) to verify our privacy claims. 
+If data practices change, this file will be updated and the “Last updated” date revised.

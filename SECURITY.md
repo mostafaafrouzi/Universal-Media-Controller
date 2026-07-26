@@ -1,79 +1,30 @@
 # Security Policy
 
-## Supported Versions
+## Supported versions
 
-We release patches for security vulnerabilities. Here are the versions that are currently being supported with security updates.
+| Version | Supported |
+| ------- | --------- |
+| 0.3.x   | Yes |
+| 0.2.x   | Security fixes only until you upgrade |
+| 0.1.x   | No |
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 0.1.x   | :white_check_mark: |
-
-## Reporting a Vulnerability
-
-We take the security of Universal Media Controller seriously. If you believe you have found a security vulnerability, please report it to us as described below.
+## Reporting a vulnerability
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-Instead, please report them via email to [your-email@example.com]. You should receive a response within 48 hours. If for some reason you do not, please follow up via email to ensure we received your original message.
+Email: **mostafa.afrouzi@gmail.com**
 
-Please include the requested information listed below (as much as you can provide) to help us better understand the nature and scope of the possible issue:
+Include type of issue, impact, version/commit, and steps to reproduce when possible.
 
-* Type of issue (e.g. buffer overflow, SQL injection, cross-site scripting, etc.)
-* Full paths of source file(s) related to the manifestation of the issue
-* The location of the affected source code (tag/branch/commit or direct URL)
-* Any special configuration required to reproduce the issue
-* Step-by-step instructions to reproduce the issue
-* Proof-of-concept or exploit code (if possible)
-* Impact of the issue, including how an attacker might exploit the issue
+## Security measures
 
-This information will help us triage your report more quickly.
+1. **Manifest V3** service worker background  
+2. **Optional host permissions** — broad access is user-granted, not required at install  
+3. **Local-only preferences** in `chrome.storage`  
+4. **No telemetry** or third-party analytics  
 
-## Security Measures
+## Best practices for users
 
-Universal Media Controller implements several security measures:
-
-1. **Manifest V3 Compliance**
-   - Uses the latest Chrome extension security model
-   - Implements strict Content Security Policy
-   - Uses service workers instead of background pages
-
-2. **Minimal Permissions**
-   - Only requests necessary permissions
-   - Uses host permissions instead of broad permissions
-   - Implements least privilege principle
-
-3. **Data Security**
-   - No data collection or transmission
-   - Local storage only for essential settings
-   - No third-party services or analytics
-
-4. **Code Security**
-   - Regular security audits
-   - Dependency updates
-   - Code review process
-
-## Best Practices
-
-When using Universal Media Controller:
-
-1. Always install from official sources:
-   - Chrome Web Store (when available)
-   - Official GitHub releases
-
-2. Keep the extension updated to the latest version
-
-3. Report any security concerns immediately
-
-## Security Updates
-
-We regularly:
-- Update dependencies
-- Perform security audits
-- Review and update security policies
-- Monitor for reported vulnerabilities
-
-## Contact
-
-For security-related inquiries, please contact:
-- Email: [your-email@example.com]
-- GitHub Issues: [Security Issues](https://github.com/mostafaafrouzi/Universal-Media-Controller/issues) 
+- Prefer **Allow this site** over **Allow all sites** when you only need a few domains  
+- Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/gfnimohgkhpemnhidffilknnibppmfkg) or official [GitHub Releases](https://github.com/mostafaafrouzi/Universal-Media-Controller/releases)  
+- Keep the extension updated  
