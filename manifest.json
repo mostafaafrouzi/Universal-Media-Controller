@@ -1,6 +1,6 @@
 {
   "name": "Universal Media Controller",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "manifest_version": 3,
   "description": "YouTube-style keyboard shortcuts for any video or audio. You choose which sites to allow — nothing is collected.",
   "homepage_url": "https://github.com/mostafaafrouzi/Universal-Media-Controller",

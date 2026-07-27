@@ -29,37 +29,64 @@ async function getGrantedOrigins() {
   return all.origins || [];
 }
 
+/** Serialize sync — onInstalled + SW wake + permission events can overlap. */
+let syncChain = Promise.resolve();
+
 async function syncContentScripts() {
+  const run = syncChain.then(() => syncContentScriptsLocked());
+  // Keep the queue alive even if a run fails
+  syncChain = run.catch(() => {});
+  return run;
+}
+
+async function syncContentScriptsLocked() {
   const origins = await getGrantedOrigins();
 
-  try {
-    await chrome.scripting.unregisterContentScripts({ ids: [SCRIPT_ID] });
-  } catch {
-    // not registered yet
-  }
-
-  if (!origins.length) return { registered: false, matches: [] };
-
-  let matches;
-  if (hasBroadAccess(origins)) {
-    matches = ['http://*/*', 'https://*/*'];
-  } else {
-    matches = origins.filter((o) => o.startsWith('http'));
-  }
-
-  if (!matches.length) return { registered: false, matches: [] };
-
-  await chrome.scripting.registerContentScripts([
-    {
-      id: SCRIPT_ID,
-      matches,
-      js: JS_FILES,
-      css: CSS_FILES,
-      allFrames: true,
-      runAt: 'document_idle',
-      persistAcrossSessions: true
+  let matches = [];
+  if (origins.length) {
+    if (hasBroadAccess(origins)) {
+      matches = ['http://*/*', 'https://*/*'];
+    } else {
+      matches = origins.filter((o) => o.startsWith('http'));
     }
-  ]);
+  }
+
+  const existing = await chrome.scripting.getRegisteredContentScripts({
+    ids: [SCRIPT_ID]
+  });
+  const alreadyRegistered = existing.some((s) => s.id === SCRIPT_ID);
+
+  if (!matches.length) {
+    if (alreadyRegistered) {
+      await chrome.scripting.unregisterContentScripts({ ids: [SCRIPT_ID] });
+    }
+    return { registered: false, matches: [] };
+  }
+
+  const definition = {
+    id: SCRIPT_ID,
+    matches,
+    js: JS_FILES,
+    css: CSS_FILES,
+    allFrames: true,
+    runAt: 'document_idle',
+    persistAcrossSessions: true
+  };
+
+  if (alreadyRegistered) {
+    await chrome.scripting.updateContentScripts([definition]);
+  } else {
+    try {
+      await chrome.scripting.registerContentScripts([definition]);
+    } catch (err) {
+      // Another wake may have registered between get and register
+      if (String(err?.message || err).includes('Duplicate script ID')) {
+        await chrome.scripting.updateContentScripts([definition]);
+      } else {
+        throw err;
+      }
+    }
+  }
 
   return { registered: true, matches };
 }
